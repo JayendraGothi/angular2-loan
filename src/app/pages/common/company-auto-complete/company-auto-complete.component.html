@@ -1,0 +1,8 @@
+<div class="">
+  <input class="form-control" type="text" placeholder="Search Companies"
+         [(ngModel)]="query"/>
+  <ul class="list-group company-list">
+    <li class="list-group-item" *ngIf="selectedCompanies.length == 0 && query.length > 0 && !company">No Companies Found</li>
+    <li class="list-group-item" *ngFor="let c of selectedCompanies" (click)="companySelected(c)">{{ c.name }}</li>
+  </ul>
+</div>

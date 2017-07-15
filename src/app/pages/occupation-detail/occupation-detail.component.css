@@ -1,0 +1,8 @@
+.company-list {
+    max-height: 200px;
+    overflow-y: scroll;
+}
+
+.list-group-item {
+    border-radius: 0;
+}

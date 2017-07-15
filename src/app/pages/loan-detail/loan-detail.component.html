@@ -1,0 +1,56 @@
+<div class="row">
+  <div class="col-xs-12 col-md-1"></div>
+  <div class="col-xs-12 col-md-5">
+
+    <!-- Loan amount slider -->
+    <div class="panel">
+      <div class="panel-heading">
+        <h3 class="heading text-center">Total Loan Amount</h3>
+      </div>
+      <div class="panel-heading">
+        <h3 class="heading text-center">{{ loan_amount }}</h3>
+      </div>
+      <div class="panel-body">
+        <input id="loan" type="range" min="0" max="5000000" step="50000" [ngModel]="loan_amount" data-orientation="horizontal"/>
+        <div class="row">
+          <div class="col-md-1">0</div>
+          <div class="col-md-2 col-md-offset-8">50L</div>
+        </div>
+      </div>
+      <div class="panel-body" *ngIf="error.loan.length > 0">
+        <span class="text-danger">{{ error.loan }}</span>
+      </div>
+    </div>
+    <!-- ./Loan amount slider -->
+  </div>
+  <div class="col-xs-12 col-md-5">
+
+    <!-- Emi amount slider -->
+    <div class="panel">
+      <div class="panel-heading">
+        <h3 class="heading">Existing EMI</h3>
+      </div>
+      <div class="panel-heading">
+        <h3 class="heading text-center">{{ emi_amount }}</h3>
+      </div>
+      <div class="panel-body">
+        <input id="emi" type="range" min="0" max="5000000" step="50000" [ngModel]="emi_amount" data-orientation="horizontal"/>
+        <div class="row">
+          <div class="col-md-1">0</div>
+          <div class="col-md-2 col-md-offset-8">50L</div>
+        </div>
+      </div>
+      <div class="panel-body" *ngIf="error.emi.length > 0">
+        <span class="text-danger">{{ error.emi }}</span>
+      </div>
+    </div>
+    <!-- ./Emi amount slider -->
+  </div>
+  <div class="col-xs-12 col-md-1"></div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12 text-center">
+    <button class="btn btn-primary" (click)="save()">Submit</button>
+  </div>
+</div>

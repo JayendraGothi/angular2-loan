@@ -1,0 +1,20 @@
+<div class="panel">
+  <div class="panel-heading">
+    <h3 class="panel-header">
+      Occupation
+    </h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-xs-9">
+        <company-auto-complete (onCompanyChanged)="companyChanged($event)"></company-auto-complete>
+        <div class="text-danger" *ngIf="error.length > 0">{{ error }}</div>
+      </div>
+      <div class="col-xs-3">
+        <button class="btn btn-primary" (click)="save()">Next</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+

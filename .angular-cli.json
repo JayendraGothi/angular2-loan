@@ -19,9 +19,18 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
+        "../node_modules/bootstrap/dist/css/bootstrap.css",
+        "../node_modules/rangeslider.js/dist/rangeslider.css",
+        "../node_modules/air-datepicker/dist/css/datepicker.css",
         "styles.css"
       ],
-      "scripts": [],
+      "scripts": [
+        "../node_modules/jquery/dist/jquery.js",
+        "../node_modules/bootstrap/dist/js/bootstrap.js",
+        "../node_modules/rangeslider.js/dist/rangeslider.js",
+        "../node_modules/air-datepicker/dist/js/datepicker.js",
+        "../node_modules/air-datepicker/dist/js/i18n/datepicker.en.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",

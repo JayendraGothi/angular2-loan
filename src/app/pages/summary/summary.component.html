@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-xs-12">
+    <div class="panel">
+      <div class="panel-heading">
+        <h3 class="panel-header text-center">
+          Summary
+        </h3>
+      </div>
+      <div class="panel-body">
+
+        <!-- personal details -->
+        First Name: {{ user.first_name }}<br>
+        Last Name: {{ user.last_name }}<br>
+        Email: {{ user.email }}<br>
+        Mobile: {{ user.mobile }}<br>
+        <!-- ./personal details -->
+
+        <!-- company details -->
+        Company: {{ company.name }}<br>
+        <!-- ./company details -->
+
+        <!-- loan details -->
+        Loan Amount: {{ amounts.loan_amount }}<br>
+        Emi Amount: {{ amounts.emi_amount }}<br>
+        <!-- ./loan details -->
+      </div>
+    </div>
+  </div>
+</div>
