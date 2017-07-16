@@ -1,0 +1,32 @@
+{
+  "userForm": {
+    "type": "object",
+    "properties": {
+      "firstName": {
+        "type": "string",
+        "label": "First Name",
+        "validations": ["required"]
+      },
+      "lastName": {
+        "type": "string",
+        "label": "Last Name",
+        "validations": ["required"]
+      },
+      "email": {
+        "type": "string",
+        "label": "Email",
+        "validations": ["required", "email"]
+      },
+      "mobile": {
+        "type": "string",
+        "label": "Mobile",
+        "validations": ["required", "mobile"]
+      },
+      "dob": {
+        "type": "date",
+        "label": "Date of birth",
+        "validations": ["required"]
+      }
+    }
+  }
+}

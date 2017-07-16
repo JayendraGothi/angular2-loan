@@ -1,4 +1,5 @@
 import {Component, Input, Output, EventEmitter, ViewChild, ElementRef} from "@angular/core";
+import {TextFieldComponent} from "../text-field/text-field.component";
 declare let jQuery: any;
 
 /**
@@ -11,61 +12,18 @@ declare let jQuery: any;
   selector: 'date-picker',
   templateUrl: 'date-picker.component.html'
 })
-export class DatePickerComponent {
+export class DatePickerComponent extends TextFieldComponent{
 
   /**
-   * date value
+   * date picker instance
    */
-  private _date: string = "";
-
-  /**
-   * get initial date as input to the component
-   */
-  @Input()
-  get date() {
-    return this._date;
-  }
-
-  /**
-   * set _date value
-   * reflect the same value to date picker
-   * @param date
-   */
-  set date(date) {
-    this._date = date;
-    if (this.picker && this._date.length > 0)
-      this.picker.selectDate(new Date(this._date));
-  }
-
-  /**
-   * Title of field
-   */
-  @Input()
-  title: string;
-
-  /**
-   * date_format for input
-   * @type {string}
-   */
-  @Input()
-  date_format: string = 'dd MM yyyy';
-
-  /**
-   * Date changed emitter
-   */
-  @Output()
-  onDateChanged = new EventEmitter();
+  private picker;
 
   /**
    * date input field
    */
   @ViewChild('date_input')
   date_input: ElementRef;
-
-  /**
-   * date picker instance
-   */
-  private picker;
 
   /**
    * on load of component initialize Date Picker
@@ -77,13 +35,24 @@ export class DatePickerComponent {
     this.picker = jQuery(this.date_input.nativeElement).datepicker({
       language: 'en',
       position: 'right center',
-      dateFormat: this.date_format,
+      dateFormat: 'dd MM yyyy',
       onSelect: function (fd, d, picker) {
-        self.onDateChanged.emit(fd);
+        self.onDateChanged(fd);
       }
     }).data('datepicker');
 
     // set initial date to date picker
-    this.picker.selectDate(new Date(this._date));
+    // this.picker.selectDate(new Date(this._date));
+  }
+
+  /**
+   * on date changed update form
+   *
+   * @param date
+   */
+  onDateChanged(date) {
+    let data = {};
+    data[this.field] = date;
+    this.form.patchValue(data);
   }
 }

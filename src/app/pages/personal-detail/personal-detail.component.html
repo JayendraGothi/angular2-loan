@@ -4,114 +4,29 @@
       <div class="panel-heading">
         <h4>Personal Details</h4>
       </div>
-      <div class="panel-body">
-        <form [formGroup]="form" (ngSubmit)="save($event)" novalidate>
-          <div class="row">
+      <div class="panel-body" *ngIf="form">
+        <div class="row">
+          <div class="col-xs-12 col-md-6" *ngFor="let field of structure.field_keys">
 
-            <div class="col-xs-12 col-md-6">
-              <!-- Email -->
-              <div class="form-group"
-                   [ngClass]="{'has-error':!form.controls['email'].valid && (form.controls['email'].touched || form_submitted)}">
-                <label class="control-label">Email (required)</label>
-                <div class="">
-                  <input formControlName="email" class="form-control" type="email">
-                  <div
-                      *ngIf="form.controls['email'].hasError('required') && (form.controls['email'].touched || form_submitted)"
-                      class="text-danger">
-                    Email is required.
-                  </div>
-                  <div
-                      *ngIf="form.value.email && form.controls['email'].hasError('email') && (form.controls['email'].touched || form_submitted)"
-                      class="text-danger">
-                    Email is invalid.
-                  </div>
-                </div>
-              </div>
-              <!-- Email -->
+            <!-- date field -->
+            <ng-template [ngIf]="structure.fields[field].type == 'date'">
+              <date-picker [form]="form" [field]="field" [form_field]="structure.fields[field]"
+                           [form_submitted]="form_submitted"></date-picker>
+            </ng-template>
+            <!-- ./date field -->
 
-              <!-- First Name -->
-              <div class="form-group"
-                   [ngClass]="{'has-error':!form.controls['first_name'].valid && (form.controls['first_name'].touched || form_submitted)}">
-                <label class="control-label">First Name (required)</label>
-                <div class="">
-                  <input class="form-control" formControlName="first_name" type="text"
-                         name="email">
-                  <div
-                      *ngIf="form.controls['first_name'].hasError('required') && (form.controls['first_name'].touched || form_submitted)"
-                      class="text-danger">
-                    First Name is required.
-                  </div>
-                </div>
-              </div>
-              <!-- ./First Name -->
+            <!-- input field -->
+            <ng-template [ngIf]="structure.fields[field].type == 'string'">
+              <text-field [form]="form" [field]="field" [form_field]="structure.fields[field]"
+                          [form_submitted]="form_submitted"></text-field>
+            </ng-template>
+            <!-- ./input field -->
 
-              <!-- Date of birth -->
-              <div class="form-group col-xs-12 col-md-6"
-                   [ngClass]="{'has-error':!form.controls['dob'].valid && (form.controls['dob'].touched || form_submitted)}">
-                <date-picker [date]="form.value.dob" [title]="'Date of Birth'"
-                             (onDateChanged)="dateChanged($event)"></date-picker>
-                <div class="text-danger"
-                     *ngIf="form.controls['dob'].hasError('required') && (form.controls['dob'].touched || form_submitted)">
-                  Date of birth is required.
-                </div>
-              </div>
-              <!-- ./Date of birth -->
-            </div>
-
-            <div class="col-xs-12 col-md-6">
-              <!-- Mobile -->
-              <div class="form-group"
-                   [ngClass]="{'has-error':!form.controls['mobile'].valid && (form.controls['mobile'].touched || form_submitted)}">
-                <label class="control-label">Mobile (required)</label>
-                <div class="">
-                  <input class="form-control" formControlName="mobile" type="text"
-                         name="mobile">
-                  <div
-                      *ngIf="form.controls['mobile'].hasError('required') && (form.controls['mobile'].touched || form_submitted)"
-                      class="text-danger">
-                    Mobile is required.
-                  </div>
-                  <div
-                      *ngIf="form.controls['mobile'].hasError('minlength') && (form.controls['mobile'].touched || form_submitted)"
-                      class="text-danger">
-                    Mobile should be at least of 10 digits.
-                  </div>
-                  <div
-                      *ngIf="form.controls['mobile'].hasError('pattern') && (form.controls['mobile'].touched || form_submitted)"
-                      class="text-danger">
-                    Mobile is invalid.
-                  </div>
-                </div>
-              </div>
-              <!-- ./Mobile -->
-
-              <!-- Last Name -->
-              <div class="form-group"
-                   [ngClass]="{'has-error':!form.controls['last_name'].valid && (form.controls['last_name'].touched || form_submitted)}">
-                <label class="control-label">Last Name (required)</label>
-                <div class="">
-                  <input class="form-control" formControlName="last_name" type="text"
-                         name="last_name">
-                  <div
-                      *ngIf="form.controls['last_name'].hasError('required') && (form.controls['last_name'].touched || form_submitted)"
-                      class="text-danger">
-                    Last Name is required.
-                  </div>
-                </div>
-              </div>
-              <!-- ./Last Name -->
-
-            </div>
           </div>
-
-          <div class="row">
-            <div class="col-xs-12 form-group">
-              <div class="form-actions text-center">
-                <button type="submit" class="btn btn-primary">NEXT</button>
-              </div>
-            </div>
-          </div>
-        </form>
+        </div>
+      </div>
+      <div class="panel-footer">
+        <button class="btn btn-primary" (click)="save()">Next</button>
       </div>
     </div>
   </div>

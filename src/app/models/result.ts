@@ -1,4 +1,5 @@
 import {Company} from "./company";
+import {Form} from "./form";
 
 
 export class Result {
@@ -7,5 +8,10 @@ export class Result {
    *
    * @type {Array}
    */
-  public companies: Company[] = [];
+  companies: Company[] = [];
+
+  /**
+   * user form structure
+   */
+  userForm: Form;
 }

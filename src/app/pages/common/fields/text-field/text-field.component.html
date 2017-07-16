@@ -1,0 +1,8 @@
+<div class="form-group" [formGroup]="form"
+     [ngClass]="{'has-error':!form.controls[field].valid && (form.controls[field].touched || form_submitted)}">
+  <label class="control-label">{{ form_field.label }}</label>
+  <div class="">
+    <input class="form-control" [formControlName]="field" type="text" name="email">
+    <validation-message [form]="form" [field]="field" [form_field]="form_field" [form_submitted]="form_submitted"></validation-message>
+  </div>
+</div>

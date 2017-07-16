@@ -1,0 +1,22 @@
+<div *ngIf="form.controls[field].hasError('required') && (form.controls[field].touched || form_submitted)"
+    class="text-danger">
+  {{ form_field.label }} is required.
+</div>
+
+<div
+    *ngIf="form.controls[field].hasError('email') && (form.controls[field].touched || form_submitted)"
+    class="text-danger">
+  {{ form_field.label }} is invalid.
+</div>
+
+<div
+    *ngIf="form.controls[field].hasError('pattern') && (form.controls[field].touched || form_submitted)"
+    class="text-danger">
+  {{ form_field.label }} is invalid.
+</div>
+
+<div
+    *ngIf="form.controls[field].hasError('minlength') && (form.controls[field].touched || form_submitted)"
+    class="text-danger">
+  {{ form_field.label }} is invalid
+</div>

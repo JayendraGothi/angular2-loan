@@ -1,8 +1,12 @@
 import {Component} from '@angular/core';
 import {Router} from "@angular/router";
-import {FormBuilder, Validators} from "@angular/forms";
+import {FormBuilder, Validators, FormGroup} from "@angular/forms";
 import * as moment from "moment";
 import {slideInOutAnimation} from "../../_animations/slide-in";
+import {Observable} from "rxjs";
+import {Http, Response} from "@angular/http";
+import {Result} from "../../models/result";
+import {Form} from "../../models/form";
 
 @Component({
   selector: 'personal-detail',
@@ -10,7 +14,7 @@ import {slideInOutAnimation} from "../../_animations/slide-in";
   styleUrls: ['./personal-detail.component.css'],
   animations: [slideInOutAnimation],
   // attach the fade in animation to the host (root) element of this component
-  host: { '[@slideInOutAnimation]': '' }
+  host: {'[@slideInOutAnimation]': ''}
 })
 export class PersonalDetailComponent {
 
@@ -22,26 +26,70 @@ export class PersonalDetailComponent {
   public form_submitted: boolean = false;
 
   /**
-   * customer form
+   * form
    *
    * @type {void|FormGroup}
    */
-  public form = this._fb.group({
-    first_name: ["", Validators.required],
-    last_name: ["", Validators.required],
-    email: ["", [Validators.required, Validators.email]],
-    mobile: ["", [Validators.required, Validators.minLength(10), Validators.pattern("^[0-9]+$")]],
-    dob: ["", Validators.required]
-  });
+  form: FormGroup;
+
+  /**
+   * form structure
+   */
+  structure: Form;
 
   /**
    * Personal Detail Constructor
    *
    * @param _router
    * @param _fb
+   * @param http
    */
-  constructor(public _router: Router, public _fb: FormBuilder) {
-    this.dateChanged(moment().format('DD MMMM YYYY'));
+  constructor(private _router: Router, private _fb: FormBuilder, private http: Http) {
+  }
+
+  /**
+   * get companies from server on load of component
+   *
+   * @returns {Observable<Result>}
+   */
+  public ngOnInit() {
+    this.fetch().subscribe(
+      response => {
+
+        // get form
+        let form = new Form(response.userForm);
+        this.structure = form;
+
+        // prepare form group
+        let form_object = {};
+        for (let field in form.fields) {
+          let validation_array = [""];
+          validation_array.push(form.fields[field].validation_array());
+          form_object[field] = validation_array;
+        }
+
+        // initialize form
+        this.form = this._fb.group(form_object);
+        this.dateChanged(moment().format('DD MMMM YYYY'));
+      },
+      err => {
+
+      }
+    );
+  }
+
+  /**
+   * fetch user form structure from json
+   *
+   * @returns {Observable<Result>}
+   */
+  fetch(): Observable<Result> {
+    return this.http.get("./assets/user-form.json")
+      .map((res: Response) => {
+        return res.json();
+      }).catch((error: any) => {
+        return Observable.throw(error.json().error || 'Server error')
+      })
   }
 
   /**
@@ -55,12 +103,12 @@ export class PersonalDetailComponent {
    * Save personal details
    */
   save() {
-    this._router.navigate(['/home/occupation']);
-    // this.form_submitted = true;
-    // if (this.form.valid) {
-    //   let data = Object.assign({}, this.form.value);
-    //   localStorage.setItem("user", JSON.stringify(data));
-    //   this._router.navigate(['/home/occupation']);
-    // }
+    console.log(this.form.value);
+    this.form_submitted = true;
+    if (this.form.valid) {
+      let data = Object.assign({}, this.form.value);
+      localStorage.setItem("user", JSON.stringify(data));
+      this._router.navigate(['/home/occupation']);
+    }
   }
 }
