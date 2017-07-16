@@ -5,10 +5,11 @@ import {Field} from "../../../../models/field";
 declare let jQuery: any;
 
 /**
- * Company auto complete
- * It helps to search company
+ * Text Field Component
+ * It helps to build text field
  *
- * E.g. <company-auto-complete></company-auto-complete>
+ * E.g. <text-field [form]="form" [field]="field" [form_field]="structure.fields[field]"
+ *                  [form_submitted]="form_submitted"></text-field>
  */
 @Component({
   selector: 'text-field',

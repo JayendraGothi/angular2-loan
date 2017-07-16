@@ -1,3 +1,6 @@
+/**
+ * Company model
+ */
 export class Company {
   name: string;
 

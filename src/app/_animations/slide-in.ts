@@ -1,6 +1,12 @@
-// import the required animation functions from the angular animations module
 import {trigger, state, animate, transition, style} from "@angular/animations";
 
+/**
+ * code taken from stackoverflow
+ * it does the slide in and slide out animation
+ * Also fixed the issue related to position of box
+ *
+ * @type {AnimationTriggerMetadata}
+ */
 export const slideInOutAnimation =
   // trigger name for attaching this animation to an element using the [@triggerName] syntax
   trigger('slideInOutAnimation', [

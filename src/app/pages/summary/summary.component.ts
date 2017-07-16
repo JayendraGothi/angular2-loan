@@ -2,6 +2,11 @@ import {Component} from '@angular/core';
 import {Company} from "../../models/company";
 import {slideInOutAnimation} from "../../_animations/slide-in";
 
+
+/**
+ * summary component
+ * show complete summary.
+ */
 @Component({
   templateUrl: 'summary.component.html',
   styleUrls: ['summary.component.css'],

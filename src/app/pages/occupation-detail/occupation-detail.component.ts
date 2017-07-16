@@ -3,6 +3,12 @@ import {Company} from "../../models/company";
 import {Router} from "@angular/router";
 import {slideInOutAnimation} from "../../_animations/slide-in";
 
+
+/**
+ * Occupation detail component
+ * component takes company details from user
+ * saves company to localstorage.
+ */
 @Component({
   selector: 'occupation-detail',
   templateUrl: 'occupation-detail.component.html',

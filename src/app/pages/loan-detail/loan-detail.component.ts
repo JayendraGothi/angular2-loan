@@ -4,6 +4,11 @@ declare let jQuery: any;
 import {slideInOutAnimation} from "../../_animations/slide-in";
 
 
+/**
+ * load details component
+ * component to get loan amount and current emi amount from user
+ * this component uses range slider to get the amount.
+ */
 @Component({
   selector: 'loan-detail',
   templateUrl: 'loan-detail.component.html',

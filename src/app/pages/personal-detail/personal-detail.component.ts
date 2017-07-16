@@ -8,6 +8,10 @@ import {Http, Response} from "@angular/http";
 import {Result} from "../../models/result";
 import {Form} from "../../models/form";
 
+/**
+ * personal detail component
+ * get user details like email, mobile, firstname, lastname, etc.
+ */
 @Component({
   selector: 'personal-detail',
   templateUrl: './personal-detail.component.html',

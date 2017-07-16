@@ -1,4 +1,9 @@
 import {Field} from "./field";
+
+/**
+ * Form model
+ * Dynamic from is created using this structure
+ */
 export class Form {
   type: string;
   properties: Object = {};
