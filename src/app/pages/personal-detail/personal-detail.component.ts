@@ -112,7 +112,7 @@ export class PersonalDetailComponent {
     if (this.form.valid) {
       let data = Object.assign({}, this.form.value);
       localStorage.setItem("user", JSON.stringify(data));
-      this._router.navigate(['/home/occupation']);
+      this._router.navigate(['/occupation']);
     }
   }
 }

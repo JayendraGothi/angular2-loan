@@ -54,7 +54,7 @@ export class OccupationDetailComponent {
   save() {
     if (this.company) {
       localStorage.setItem("company", JSON.stringify(this.company));
-      this._router.navigate(['/home/loan']);
+      this._router.navigate(['/loan']);
     } else
       this.error = "Company is Required";
   }

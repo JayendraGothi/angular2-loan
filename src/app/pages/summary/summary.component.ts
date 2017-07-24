@@ -46,7 +46,7 @@ export class SummaryComponent {
     // get personal details
     let company = localStorage.getItem("company");
     if (company != "undefined" && company !== null && company !== "null") {
-      this.company = JSON.parse(user);
+      this.company = JSON.parse(company);
     }
 
     // get personal details

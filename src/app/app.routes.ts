@@ -15,7 +15,7 @@ export const routes: Routes = [{
   path: '',
   component: BaseComponent,
   children: [{
-    path: 'home',
+    path: '',
     children: [{
       path: '',
       component: PersonalDetailComponent

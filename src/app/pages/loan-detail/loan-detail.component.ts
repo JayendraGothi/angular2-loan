@@ -87,7 +87,7 @@ export class LoanDetailComponent {
         loan_amount: this.loan_amount,
         emi_amount: this.emi_amount
       }));
-      this._router.navigate(['/home/summary']);
+      this._router.navigate(['/summary']);
     }
   }
 
